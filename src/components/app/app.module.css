@@ -1,9 +1,13 @@
 .app {
-  background-color: black;
+  background-color: #090909;
   min-height: 100vh;
   font-family: 'Inter';
-  padding-bottom: 194px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+.main {
+  display: flex;
+  max-width: 1240px;
+  margin: auto;
+}

@@ -20,8 +20,8 @@ function AppHeader() {
                         <p className="text text_type_main-default text_color_inactive ml-2 mr-2 mb-16 mt-16">Лента заказов</p>
                     </div>
                 </div>
-                <a href="" className={AppHeaderStyles.nav__item}><Logo /></a>
-                <div className={AppHeaderStyles.nav__item}>
+                <div className={AppHeaderStyles.nav__logo}><a href=""><Logo /></a></div>
+                <div className={AppHeaderStyles.nav__profile}>
                     <ProfileIcon type="secondary" />
                     <p className="text text_type_main-default text_color_inactive ml-2 mr-2 mb-16 mt-16">Личный кабинет</p>
                 </div>

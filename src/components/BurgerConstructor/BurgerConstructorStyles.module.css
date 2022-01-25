@@ -1,0 +1,50 @@
+.BurgerConstructor {
+    max-width: 600px;
+    margin: 100px 0 40px 40px;
+  }
+
+  .ingredients__container {
+    max-height: 646px;
+    display: flex; 
+    flex-direction: column; 
+    gap: 16px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 0 16px 0 16px;
+  }
+
+  .ingredients__container::-webkit-scrollbar {
+    width: 8px;
+    background-color: #2F2F37;
+  }
+
+  .ingredients__container::-webkit-scrollbar-thumb {
+    width: 8px;
+    background-color: #8585AD;
+  }
+
+  .place__order {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 40px 0 0 0;
+  }
+  
+  .cost {
+    display: flex;
+    margin: 0 40px 0 0;
+  }
+
+  .icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .container__item {
+    display: flex;
+    align-items: center;
+  }
+
+  .text__center {
+    text-align: center;
+  }
