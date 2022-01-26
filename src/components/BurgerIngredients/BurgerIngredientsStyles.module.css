@@ -48,3 +48,7 @@
     display: flex;
     margin: auto;
   }
+
+  .text__center {
+    text-align: center;
+  }

@@ -1,19 +1,19 @@
 import React from 'react';
-import BurgerConstructorStyles from './BurgerConstructorStyles.module.css';
+import BurgerConstructorStyles from './burgerConstructorStyles.module.css';
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import bun02 from '../../images/bun-02.png';
 import subtract from '../../images/Subtract.png';
 import PropTypes from 'prop-types';
+import BurgerPropsType from '../../utils/types';
 
 
 function BurgerConstructor(props) {
 
     return (
         <div className={BurgerConstructorStyles.BurgerConstructor}>
-            <section className={BurgerConstructorStyles.ingredients__container}>
+            <section className={BurgerConstructorStyles.ingredients}>
                 <div className={BurgerConstructorStyles.container__item}>
                     <div style={{ backgroundColor: '#4c4cff' }} className="ml-6"></div>
                     <ConstructorElement
@@ -24,20 +24,24 @@ function BurgerConstructor(props) {
                         thumbnail={bun02}
                     />
                 </div>
-                {props.data.map(
-                    ({ name, price, image, _id }) => {
-                        return (
-                            <div className={BurgerConstructorStyles.container__item} key={_id}>
-                                <DragIcon type="primary" />
-                                <ConstructorElement
-                                    text={name}
-                                    price={price}
-                                    thumbnail={image}
-                                />
-                            </div>
-                        );
-                    })
-                }
+                <div className={BurgerConstructorStyles.ingredients__container}>
+                    {props.data.map(
+                        ({ name, price, image, type, _id }) => {
+                            if (type !== "bun") {
+                                return (
+                                    <div className={BurgerConstructorStyles.container__item} key={_id}>
+                                        <DragIcon type="primary" />
+                                        <ConstructorElement
+                                            text={name}
+                                            price={price}
+                                            thumbnail={image}
+                                        />
+                                    </div>
+                                );
+                            }
+                        })
+                    }
+                </div>
                 <div className={BurgerConstructorStyles.container__item}>
                     <div style={{ backgroundColor: '#4c4cff' }} className="ml-6"></div>
                     <ConstructorElement
@@ -64,21 +68,6 @@ function BurgerConstructor(props) {
     );
 }
 
-BurgerConstructor.propTypes = {
-    data: PropTypes.arrayOf(PropTypes.shape({
-        _id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired,
-        proteins: PropTypes.number.isRequired,
-        fat: PropTypes.number.isRequired,
-        carbohydrates: PropTypes.number.isRequired,
-        calories: PropTypes.number.isRequired,
-        price: PropTypes.number.isRequired,
-        image: PropTypes.string.isRequired,
-        image_mobile: PropTypes.string.isRequired,
-        image_large: PropTypes.string.isRequired,
-        __v: PropTypes.number.isRequired
-    })).isRequired
-};
+BurgerConstructor.propTypes = BurgerPropsType;
 
 export default BurgerConstructor;

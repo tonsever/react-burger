@@ -1,9 +1,10 @@
 import React from 'react';
-import BurgerIngredientsStyles from './BurgerIngredientsStyles.module.css';
+import BurgerIngredientsStyles from './burgerIngredientsStyles.module.css';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Counter } from '@ya.praktikum/react-developer-burger-ui-components';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
+import BurgerPropsType from '../../utils/types';
 
 
 function BurgerIngredients(props) {
@@ -81,21 +82,6 @@ function BurgerIngredients(props) {
     );
 }
 
-BurgerIngredients.propTypes = {
-    data: PropTypes.arrayOf(PropTypes.shape({
-        _id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired,
-        proteins: PropTypes.number.isRequired,
-        fat: PropTypes.number.isRequired,
-        carbohydrates: PropTypes.number.isRequired,
-        calories: PropTypes.number.isRequired,
-        price: PropTypes.number.isRequired,
-        image: PropTypes.string.isRequired,
-        image_mobile: PropTypes.string.isRequired,
-        image_large: PropTypes.string.isRequired,
-        __v: PropTypes.number.isRequired
-    })).isRequired
-};
+BurgerIngredients.propTypes = BurgerPropsType
 
 export default BurgerIngredients;

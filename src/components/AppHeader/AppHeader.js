@@ -1,10 +1,10 @@
 import React from 'react';
-import AppHeaderStyles from './AppHeader.module.css';
+import AppHeaderStyles from './appHeader.module.css';
 import { BurgerIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { ListIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Logo } from '@ya.praktikum/react-developer-burger-ui-components'
 import { ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import { Box } from '@ya.praktikum/react-developer-burger-ui-components'
+
 
 function AppHeader() {
     return (
