@@ -1,0 +1,13 @@
+.app {
+  background-color: #090909;
+  min-height: 100vh;
+  font-family: 'Inter';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.main {
+  display: flex;
+  max-width: 1240px;
+  margin: auto;
+}
