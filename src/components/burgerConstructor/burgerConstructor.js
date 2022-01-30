@@ -3,6 +3,7 @@ import BurgerConstructorStyles from './burgerConstructorStyles.module.css';
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import bun02 from '../../images/bun-02.png';
 import subtract from '../../images/Subtract.png';
 import PropTypes from 'prop-types';
@@ -11,11 +12,6 @@ import OrderDetails from '../orderDetails/orderDetails';
 
 
 function BurgerConstructor(props) {
-    const [isOrderDetailsOpen, setIsOrderDetailsOpen] = React.useState(false);
-    
-    function handleOrderDetailsClick() {
-        setIsOrderDetailsOpen(!isOrderDetailsOpen);
-      }
 
     return (
         <div className={BurgerConstructorStyles.BurgerConstructor}>
@@ -62,14 +58,12 @@ function BurgerConstructor(props) {
             <div className={BurgerConstructorStyles.place__order}>
                 <div className={BurgerConstructorStyles.cost}>
                     <p className="text text_type_digits-medium mr-2">610</p>
-                    {/* <CurrencyIcon className={BurgerConstructorStyles.icons} type="primary" /> */}
-                    <img className={BurgerConstructorStyles.icon} src={subtract} alt="Большая иконка валюты" />
+                    <div className={BurgerConstructorStyles.icon}><CurrencyIcon  type="primary" /></div>
                 </div>
-                <Button onClick={handleOrderDetailsClick} type="primary" size="large">
+                <Button onClick={props.orderDetil} type="primary" size="large">
                     Оформить заказ
                 </Button>
             </div>
-            {isOrderDetailsOpen && <OrderDetails onСlose={handleOrderDetailsClick}/>}
         </div>
 
     );

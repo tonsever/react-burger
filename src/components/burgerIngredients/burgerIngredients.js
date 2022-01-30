@@ -10,28 +10,26 @@ import Ingredient from '../ingredient/ingredient';
 
 
 function BurgerIngredients(props) {
-    const [isIngredientDetailsOpen, setisIngredientDetailsOpen] = React.useState(false);
-    const [ingredient, setIngredient] = React.useState();
-
-    function handleIngredientDetailsClick() {
-        setisIngredientDetailsOpen(!isIngredientDetailsOpen);
+    const [current, setCurrent] = React.useState('buns')
+    function handlesetCurrent(e) {
+        if (e === 'buns') {setCurrent('buns')};
+        if (e === 'sauces') {setCurrent('sauces')};
+        if (e === 'mains') {setCurrent('mains')};
     }
-
-    function handleIngredientClick(id) {
-        handleIngredientDetailsClick()
-        const ingredientData = props.data.find((ingredient) => {
-            return ingredient._id === id
-        });
-        setIngredient(ingredientData);
-      }
 
     return (
         <div className={BurgerIngredientsStyles.BurgerIngredients}>
             <h1 className="text text_type_main-large mt-40">Соберите бургер</h1>
             <div className={BurgerIngredientsStyles.tab__container}>
-                <Tab>Булки</Tab>
-                <Tab>Соусы</Tab>
-                <Tab>Начинки</Tab>
+                <Tab value="buns" active={current === 'buns'} onClick={handlesetCurrent}>
+                    Булки
+                </Tab>
+                <Tab value="sauces" active={current === 'sauces'} onClick={handlesetCurrent}>
+                    Соусы
+                </Tab>
+                <Tab value="mains" active={current === 'mains'} onClick={handlesetCurrent}>
+                    Начинки
+                </Tab>
             </div>
             <section className={BurgerIngredientsStyles.ingredients__container}>
                 <h2 className="text text_type_main-medium">Булки</h2>
@@ -46,7 +44,7 @@ function BurgerIngredients(props) {
                                         price={price}
                                         id={_id}
                                         key={_id}
-                                        onOpen={handleIngredientClick}
+                                        onOpen={props.ingredientDetail}
                                     />
                                 );
                             }
@@ -65,7 +63,7 @@ function BurgerIngredients(props) {
                                         price={price}
                                         id={_id}
                                         key={_id}
-                                        onOpen={handleIngredientClick}
+                                        onOpen={props.ingredientDetail}
                                     />
                                 );
                             }
@@ -84,7 +82,7 @@ function BurgerIngredients(props) {
                                         price={price}
                                         id={_id}
                                         key={_id}
-                                        onOpen={handleIngredientClick}
+                                        onOpen={props.ingredientDetail}
                                     />
                                 );
                             }
@@ -92,7 +90,6 @@ function BurgerIngredients(props) {
                     }
                 </div>
             </section>
-            {isIngredientDetailsOpen && <IngredientDetails ingredientData={ingredient} onСlose={handleIngredientDetailsClick} />}
         </div>
     );
 }
