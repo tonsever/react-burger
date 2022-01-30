@@ -7,9 +7,15 @@ import bun02 from '../../images/bun-02.png';
 import subtract from '../../images/Subtract.png';
 import PropTypes from 'prop-types';
 import BurgerPropsType from '../../utils/types';
+import OrderDetails from '../orderDetails/orderDetails';
 
 
 function BurgerConstructor(props) {
+    const [isOrderDetailsOpen, setIsOrderDetailsOpen] = React.useState(false);
+    
+    function handleOrderDetailsClick() {
+        setIsOrderDetailsOpen(!isOrderDetailsOpen);
+      }
 
     return (
         <div className={BurgerConstructorStyles.BurgerConstructor}>
@@ -59,10 +65,11 @@ function BurgerConstructor(props) {
                     {/* <CurrencyIcon className={BurgerConstructorStyles.icons} type="primary" /> */}
                     <img className={BurgerConstructorStyles.icon} src={subtract} alt="Большая иконка валюты" />
                 </div>
-                <Button type="primary" size="large">
+                <Button onClick={handleOrderDetailsClick} type="primary" size="large">
                     Оформить заказ
                 </Button>
             </div>
+            {isOrderDetailsOpen && <OrderDetails onСlose={handleOrderDetailsClick}/>}
         </div>
 
     );
