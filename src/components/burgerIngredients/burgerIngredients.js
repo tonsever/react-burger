@@ -5,16 +5,31 @@ import { Counter } from '@ya.praktikum/react-developer-burger-ui-components';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
 import BurgerPropsType from '../../utils/types';
+import IngredientDetails from '../ingredientDetails/ingredientDetails';
+import Ingredient from '../ingredient/ingredient';
 
 
 function BurgerIngredients(props) {
+    const [current, setCurrent] = React.useState('buns')
+    function handlesetCurrent(e) {
+        if (e === 'buns') {setCurrent('buns')};
+        if (e === 'sauces') {setCurrent('sauces')};
+        if (e === 'mains') {setCurrent('mains')};
+    }
+
     return (
         <div className={BurgerIngredientsStyles.BurgerIngredients}>
             <h1 className="text text_type_main-large mt-40">Соберите бургер</h1>
             <div className={BurgerIngredientsStyles.tab__container}>
-                <Tab>Булки</Tab>
-                <Tab>Соусы</Tab>
-                <Tab>Начинки</Tab>
+                <Tab value="buns" active={current === 'buns'} onClick={handlesetCurrent}>
+                    Булки
+                </Tab>
+                <Tab value="sauces" active={current === 'sauces'} onClick={handlesetCurrent}>
+                    Соусы
+                </Tab>
+                <Tab value="mains" active={current === 'mains'} onClick={handlesetCurrent}>
+                    Начинки
+                </Tab>
             </div>
             <section className={BurgerIngredientsStyles.ingredients__container}>
                 <h2 className="text text_type_main-medium">Булки</h2>
@@ -23,15 +38,14 @@ function BurgerIngredients(props) {
                         ({ name, price, image, type, _id }) => {
                             if (type === "bun") {
                                 return (
-                                    <div className={BurgerIngredientsStyles.list__item} key={_id}>
-                                        <img className={BurgerIngredientsStyles.image} src={image} alt="Булка" />
-                                        <Counter count={1} size="default" />
-                                        <div className={BurgerIngredientsStyles.cost}>
-                                            <p className="text text_type_main-medium mr-2">{price}</p>
-                                            <CurrencyIcon type="primary" />
-                                        </div>
-                                        <p className={`text text_type_main-small ${BurgerIngredientsStyles.text__center}`}>{name}</p>
-                                    </div>
+                                    <Ingredient
+                                        image={image}
+                                        name={name}
+                                        price={price}
+                                        id={_id}
+                                        key={_id}
+                                        onOpen={props.ingredientDetail}
+                                    />
                                 );
                             }
                         })
@@ -43,15 +57,14 @@ function BurgerIngredients(props) {
                         ({ name, price, image, type, _id }) => {
                             if (type === "sauce") {
                                 return (
-                                    <div className={BurgerIngredientsStyles.list__item} key={_id}>
-                                        <img className={BurgerIngredientsStyles.image} src={image} alt="Булка" />
-                                        <Counter count={1} size="default" />
-                                        <div className={BurgerIngredientsStyles.cost}>
-                                            <p className="text text_type_main-medium mr-2">{price}</p>
-                                            <CurrencyIcon type="primary" />
-                                        </div>
-                                        <p className={`text text_type_main-small ${BurgerIngredientsStyles.text__center}`}>{name}</p>
-                                    </div>
+                                    <Ingredient
+                                        image={image}
+                                        name={name}
+                                        price={price}
+                                        id={_id}
+                                        key={_id}
+                                        onOpen={props.ingredientDetail}
+                                    />
                                 );
                             }
                         })
@@ -63,15 +76,14 @@ function BurgerIngredients(props) {
                         ({ name, price, image, type, _id }) => {
                             if (type === "main") {
                                 return (
-                                    <div className={BurgerIngredientsStyles.list__item} key={_id}>
-                                        <img className={BurgerIngredientsStyles.image} src={image} alt="Булка" />
-                                        <Counter count={1} size="default" />
-                                        <div className={BurgerIngredientsStyles.cost}>
-                                            <p className="text text_type_main-medium mr-2">{price}</p>
-                                            <CurrencyIcon type="primary" />
-                                        </div>
-                                        <p className={`text text_type_main-small ${BurgerIngredientsStyles.text__center}`}>{name}</p>
-                                    </div>
+                                    <Ingredient
+                                        image={image}
+                                        name={name}
+                                        price={price}
+                                        id={_id}
+                                        key={_id}
+                                        onOpen={props.ingredientDetail}
+                                    />
                                 );
                             }
                         })

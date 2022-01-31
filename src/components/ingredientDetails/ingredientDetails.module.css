@@ -1,0 +1,20 @@
+.details {
+  display: flex;
+  flex-direction: column;
+}
+
+.nutritionists {
+  width: 540px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nutritionist {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.text__center {
+  text-align: center;
+}
