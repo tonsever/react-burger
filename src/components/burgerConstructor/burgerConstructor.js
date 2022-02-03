@@ -12,6 +12,9 @@ import OrderDetails from '../orderDetails/orderDetails';
 
 
 function BurgerConstructor(props) {
+    const bun = props.data.find((bun) => {
+        return bun.type === "bun"
+    })
 
     return (
         <div className={BurgerConstructorStyles.BurgerConstructor}>
@@ -21,9 +24,9 @@ function BurgerConstructor(props) {
                     <ConstructorElement
                         type="top"
                         isLocked={true}
-                        text="Краторная булка N-200i (верх)"
-                        price={200}
-                        thumbnail={bun02}
+                        text={`${bun.name} (верх)`}
+                        price={bun.price}
+                        thumbnail={bun.image}
                     />
                 </div>
                 <div className={BurgerConstructorStyles.ingredients__container}>

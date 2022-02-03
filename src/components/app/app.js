@@ -14,6 +14,7 @@ function App() {
   const [isOrderDetailsOpen, setIsOrderDetailsOpen] = React.useState(false);
   const [isIngredientDetailsOpen, setisIngredientDetailsOpen] = React.useState(false);
   const [ingredient, setIngredient] = React.useState();
+  const [isLoding, setLoding] = React.useState(true);
 
     
   function handleOrderDetailsClick() {
@@ -37,7 +38,7 @@ function App() {
     fetch(config.url)
       .then(res => {
         if (res.ok) {
-          res.json().then(res => { setData(res.data);})
+          res.json().then(res => { setData(res.data); setLoding(false)} )
         }
         else {console.log("Произошла ошибка");}
       })
@@ -46,7 +47,7 @@ function App() {
       });
   },[]);
 
-
+if (isLoding === true) {return null} /* не отрисовывать пока не получим data */
   return (
     <div className={appStyles.app}>
       <AppHeader />
