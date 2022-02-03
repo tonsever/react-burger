@@ -17,7 +17,6 @@ function BurgerConstructor(props) {
     const bun = data.find((bun) => {
             return bun.type === "bun"
         })
-        console.log(data); 
     return (
         <div className={BurgerConstructorStyles.BurgerConstructor}>
             <section className={BurgerConstructorStyles.ingredients}>
