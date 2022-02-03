@@ -9,10 +9,15 @@ import subtract from '../../images/Subtract.png';
 import PropTypes from 'prop-types';
 import BurgerPropsType from '../../utils/types';
 import OrderDetails from '../orderDetails/orderDetails';
+import { DataContext } from '../../utils/dataContext.js';
 
 
 function BurgerConstructor(props) {
-
+    const {data} = React.useContext(DataContext);
+    const bun = data.find((bun) => {
+            return bun.type === "bun"
+        })
+        console.log(data); 
     return (
         <div className={BurgerConstructorStyles.BurgerConstructor}>
             <section className={BurgerConstructorStyles.ingredients}>
@@ -21,13 +26,13 @@ function BurgerConstructor(props) {
                     <ConstructorElement
                         type="top"
                         isLocked={true}
-                        text="Краторная булка N-200i (верх)"
-                        price={200}
-                        thumbnail={bun02}
+                        text={`${bun.name} (верх)`}
+                        price={bun.price}
+                        thumbnail={bun.image}
                     />
                 </div>
                 <div className={BurgerConstructorStyles.ingredients__container}>
-                    {props.data.map(
+                    {data.map(
                         ({ name, price, image, type, _id }) => {
                             if (type !== "bun") {
                                 return (
@@ -49,16 +54,16 @@ function BurgerConstructor(props) {
                     <ConstructorElement
                         type="bottom"
                         isLocked={true}
-                        text="Краторная булка N-200i (низ)"
-                        price={200}
-                        thumbnail={bun02}
+                        text={`${bun.name} (низ)`}
+                        price={bun.price}
+                        thumbnail={bun.image}
                     />
                 </div>
             </section>
             <div className={BurgerConstructorStyles.place__order}>
                 <div className={BurgerConstructorStyles.cost}>
                     <p className="text text_type_digits-medium mr-2">610</p>
-                    <div className={BurgerConstructorStyles.icon}><CurrencyIcon  type="primary" /></div>
+                    <div className={BurgerConstructorStyles.icon}><CurrencyIcon type="primary" /></div>
                 </div>
                 <Button onClick={props.orderDetil} type="primary" size="large">
                     Оформить заказ

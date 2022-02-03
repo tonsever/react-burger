@@ -8,6 +8,8 @@ import Modal from '../modal/modal';
 import ModalOverlay from '../modalOverlay/modalOverlay';
 import OrderDetails from '../orderDetails/orderDetails';
 import config from '../../constants/config';
+import { DataContext } from '../../utils/dataContext.js';
+import data from '../../utils/data.js';
 
 function App() {
   const [data, setData] = React.useState([]);
@@ -15,46 +17,48 @@ function App() {
   const [isIngredientDetailsOpen, setisIngredientDetailsOpen] = React.useState(false);
   const [ingredient, setIngredient] = React.useState();
 
-    
+
   function handleOrderDetailsClick() {
-      setIsOrderDetailsOpen(!isOrderDetailsOpen);
-    }
+    setIsOrderDetailsOpen(!isOrderDetailsOpen);
+  }
 
 
-    function handleIngredientDetailsClick() {
-        setisIngredientDetailsOpen(!isIngredientDetailsOpen);
-    }
+  function handleIngredientDetailsClick() {
+    setisIngredientDetailsOpen(!isIngredientDetailsOpen);
+  }
 
-    function handleIngredientClick(id) {
-        handleIngredientDetailsClick()
-        const ingredientData = data.find((ingredient) => {
-            return ingredient._id === id
-        });
-        setIngredient(ingredientData);
-      }
+  function handleIngredientClick(id) {
+    handleIngredientDetailsClick()
+    const ingredientData = data.find((ingredient) => {
+      return ingredient._id === id
+    });
+    setIngredient(ingredientData);
+  }
 
   React.useEffect(() => {
     fetch(config.url)
       .then(res => {
         if (res.ok) {
-          res.json().then(res => { setData(res.data);})
+          res.json().then(res => { setData(res.data); })
         }
-        else {console.log("Произошла ошибка");}
+        else { console.log("Произошла ошибка"); }
       })
       .catch(e => {
         console.log(e);
       });
-  },[]);
+  }, []);
 
-
+  console.log(data); 
   return (
     <div className={appStyles.app}>
       <AppHeader />
       <main className={appStyles.main}>
-        <BurgerIngredients ingredientDetail = {handleIngredientClick} data={data} />
-        <BurgerConstructor orderDetil = {handleOrderDetailsClick} data={data} />
-        {isIngredientDetailsOpen && <Modal title='Детали ингредиента' closeModal={handleIngredientDetailsClick}><IngredientDetails ingredientData={ingredient}/></Modal>}
-        {isOrderDetailsOpen && <Modal closeModal={handleOrderDetailsClick}><OrderDetails/></Modal>}
+        <DataContext.Provider value={{data}}>
+          <BurgerIngredients ingredientDetail={handleIngredientClick}/>
+          <BurgerConstructor orderDetil={handleOrderDetailsClick} />
+          {isIngredientDetailsOpen && <Modal title='Детали ингредиента' closeModal={handleIngredientDetailsClick}><IngredientDetails ingredientData={ingredient} /></Modal>}
+          {isOrderDetailsOpen && <Modal closeModal={handleOrderDetailsClick}><OrderDetails /></Modal>}
+        </DataContext.Provider>
       </main>
     </div>
   );
