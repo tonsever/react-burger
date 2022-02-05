@@ -4,19 +4,41 @@ import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-comp
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import bun02 from '../../images/bun-02.png';
-import subtract from '../../images/Subtract.png';
-import PropTypes from 'prop-types';
 import BurgerPropsType from '../../utils/types';
-import OrderDetails from '../orderDetails/orderDetails';
+import IngredientElement from '../ingredientElement/ingredientElement';
 import { DataContext } from '../../utils/dataContext.js';
 
 
 function BurgerConstructor(props) {
-    const {data} = React.useContext(DataContext);
+    const { data } = React.useContext(DataContext);
+    const [totalPrice, setTotalPrice] = React.useState(0);
+    const [constructorElements, setConstructorElements] = React.useState(data);
     const bun = data.find((bun) => {
-            return bun.type === "bun"
-        })
+        return bun.type === "bun"
+    })
+
+    const onDelete = (id) => {
+        setConstructorElements(constructorElements.filter(item => item._id !== id));
+    };
+
+    const handleOrderDetailsClick = () => {
+        const ingredients = {
+            "ingredients": []
+        }
+        constructorElements.forEach(element => {
+            ingredients.ingredients.push(element._id);
+        });
+        props.orderDetil(ingredients);
+    }
+
+    React.useEffect(
+        () => {
+            let total = 0;
+            constructorElements.map(item => { if (item.type !== "bun") { (total += item.price) } });
+            setTotalPrice(total + bun.price * 2);
+        },
+        [constructorElements, setTotalPrice]
+    );
     return (
         <div className={BurgerConstructorStyles.BurgerConstructor}>
             <section className={BurgerConstructorStyles.ingredients}>
@@ -31,18 +53,18 @@ function BurgerConstructor(props) {
                     />
                 </div>
                 <div className={BurgerConstructorStyles.ingredients__container}>
-                    {data.map(
+                    {constructorElements.map(
                         ({ name, price, image, type, _id }) => {
                             if (type !== "bun") {
                                 return (
-                                    <div className={BurgerConstructorStyles.container__item} key={_id}>
-                                        <DragIcon type="primary" />
-                                        <ConstructorElement
-                                            text={name}
-                                            price={price}
-                                            thumbnail={image}
-                                        />
-                                    </div>
+                                    <IngredientElement
+                                        key={_id}
+                                        text={name}
+                                        price={price}
+                                        thumbnail={image}
+                                        handleDelete={onDelete}
+                                        id={_id}
+                                    />
                                 );
                             }
                         })
@@ -61,10 +83,10 @@ function BurgerConstructor(props) {
             </section>
             <div className={BurgerConstructorStyles.place__order}>
                 <div className={BurgerConstructorStyles.cost}>
-                    <p className="text text_type_digits-medium mr-2">610</p>
+                    <p className="text text_type_digits-medium mr-2">{totalPrice}</p>
                     <div className={BurgerConstructorStyles.icon}><CurrencyIcon type="primary" /></div>
                 </div>
-                <Button onClick={props.orderDetil} type="primary" size="large">
+                <Button onClick={handleOrderDetailsClick} type="primary" size="large">
                     Оформить заказ
                 </Button>
             </div>
