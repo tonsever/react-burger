@@ -10,10 +10,14 @@ import { DataContext } from '../../utils/dataContext.js';
 
 
 function BurgerConstructor(props) {
+<<<<<<< HEAD
     const { data } = React.useContext(DataContext);
     const [totalPrice, setTotalPrice] = React.useState(0);
     const [constructorElements, setConstructorElements] = React.useState(data);
     const bun = data.find((bun) => {
+=======
+    const bun = props.data.find((bun) => {
+>>>>>>> master
         return bun.type === "bun"
     })
 
