@@ -9,7 +9,6 @@ function IngredientDetails(props) {
     <div className={ingredientDetailsStyles.details}>
       <img src={props.ingredientData.image_large} alt="ингредиент" />
       <h3 className="text text_type_main-medium">{props.ingredientData.name}</h3>
-      <div style={{ backgroundColor: '#4c4cff' }} className="mt-8"></div>
       <div className={ingredientDetailsStyles.nutritionists}>
         <div className={ingredientDetailsStyles.nutritionist}>
           <p className={`text text_type_main-default text_color_inactive ${ingredientDetailsStyles.text__center}`}>Калории,ккал</p>
@@ -29,7 +28,6 @@ function IngredientDetails(props) {
           <p className={`text text_type_digits-default text_color_inactive ${ingredientDetailsStyles.text__center}`}>{props.ingredientData.carbohydrates}</p>
         </div>
       </div>
-      <div style={{ backgroundColor: '#4c4cff' }} className="mt-15"></div>
     </div>
   );
 }
