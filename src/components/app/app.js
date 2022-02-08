@@ -36,7 +36,7 @@ function App() {
       })
         .then(res => {
           if (res.ok) {
-            res.json().then(res => { setrderNumber(res.order.number); })
+            res.json().then(res => { setrderNumber(res.order.number)})
           }
           else { console.log("Произошла ошибка"); }
         })
@@ -62,7 +62,7 @@ function App() {
     fetch(`${config.url}/api/ingredients`)
       .then(res => {
         if (res.ok) {
-          res.json().then(res => { setData(res.data); setLoding(false)} )
+          res.json().then(res => { setData(res.data); setIsLoading(false)} )
         }
         else { console.log("Произошла ошибка"); }
       })
@@ -72,7 +72,7 @@ function App() {
   }, []);
 
 
-if (isLoding === true) {return null} /* не отрисовывать пока не получим data */
+if (isLoading === true) {return null} /* не отрисовывать пока не получим data */
 
   return (
     <div className={appStyles.app}>

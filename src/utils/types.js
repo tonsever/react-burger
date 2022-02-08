@@ -25,12 +25,12 @@ export const IngredientPropsType = {
 };
 
 export const IngredientDetailstPropsType = PropTypes.shape({
-	name: PropTypes.string.isRequired,
-	proteins: PropTypes.number.isRequired,
-	fat: PropTypes.number.isRequired,
-	carbohydrates: PropTypes.number.isRequired,
-	calories: PropTypes.number.isRequired,
-	image_large: PropTypes.string.isRequired,
+	name: PropTypes.string,
+	proteins: PropTypes.number,
+	fat: PropTypes.number,
+	carbohydrates: PropTypes.number,
+	calories: PropTypes.number,
+	image_large: PropTypes.string,
 })
 
 export const IngredientElementPropsType = {
