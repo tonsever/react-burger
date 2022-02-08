@@ -2,6 +2,7 @@ import React from 'react';
 import IngredientElementStyles from './ingredientElement.module.css';
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import {IngredientElementPropsType} from '../../utils/types';
 
 
 function IngredientElement(props) {
@@ -21,5 +22,7 @@ function IngredientElement(props) {
         </div>
     )
 }
+
+IngredientElement.propTypes = IngredientElementPropsType;
 
 export default IngredientElement;

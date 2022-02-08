@@ -4,7 +4,7 @@ import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-comp
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import BurgerPropsType from '../../utils/types';
+import {BurgerPropsType} from '../../utils/types';
 import IngredientElement from '../ingredientElement/ingredientElement';
 import { DataContext } from '../../utils/dataContext.js';
 

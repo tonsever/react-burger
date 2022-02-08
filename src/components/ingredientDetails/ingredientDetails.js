@@ -1,6 +1,7 @@
 import React from 'react';
 import ingredientDetailsStyles from './ingredientDetails.module.css';
 import Modal from '../modal/modal';
+import {IngredientDetailstPropsType} from '../../utils/types';
 
 
 function IngredientDetails(props) {
@@ -32,5 +33,7 @@ function IngredientDetails(props) {
     </div>
   );
 }
+
+IngredientDetails.propTypes = IngredientDetailstPropsType;
 
 export default IngredientDetails;

@@ -51,7 +51,7 @@ function App() {
   }
 
   function handleIngredientClick(id) {
-    handleIngredientDetailsClick()
+    handleIngredientDetailsClick();
     const ingredientData = data.find((ingredient) => {
       return ingredient._id === id
     });
