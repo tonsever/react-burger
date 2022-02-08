@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-export const BurgerPropsType = {
+/* export const BurgerPropsType = {
 	data: PropTypes.arrayOf(PropTypes.shape({
 		_id: PropTypes.string.isRequired,
 		name: PropTypes.string.isRequired,
@@ -14,7 +14,15 @@ export const BurgerPropsType = {
 		image_mobile: PropTypes.string.isRequired,
 		image_large: PropTypes.string.isRequired,
 		__v: PropTypes.number.isRequired
-	}))
+	})).isRequired
+}; */
+
+export const BurgerConstructorPropsType = {
+	orderDetil: PropTypes.func.isRequired,
+};
+
+export const BurgerIngredientsPropsType = {
+	ingredientDetail: PropTypes.func.isRequired,
 };
 
 export const IngredientPropsType = {
@@ -25,20 +33,20 @@ export const IngredientPropsType = {
 };
 
 export const IngredientDetailstPropsType = PropTypes.shape({
-	name: PropTypes.string,
-	proteins: PropTypes.number,
-	fat: PropTypes.number,
-	carbohydrates: PropTypes.number,
-	calories: PropTypes.number,
-	image_large: PropTypes.string,
-})
+	name: PropTypes.string.isRequired,
+	proteins: PropTypes.number.isRequired,
+	fat: PropTypes.number.isRequired,
+	carbohydrates: PropTypes.number.isRequired,
+	calories: PropTypes.number.isRequired,
+	image_large: PropTypes.string.isRequired,
+}).isRequired
 
 export const IngredientElementPropsType = {
 	text: PropTypes.string.isRequired,
 	price: PropTypes.number.isRequired,
 	thumbnail: PropTypes.string.isRequired,
 	id: PropTypes.string.isRequired,
-	handleClose: PropTypes.func,
+	handleDelete: PropTypes.func.isRequired,
 };
 
 export const ModalPropsType = {
@@ -56,6 +64,6 @@ export const ModalOverlayPropsType = {
 };
 
 export const OrderDetailsPropsType = {
-	orderNumber: PropTypes.number,
+	orderNumber: PropTypes.number.isRequired,
 };
 

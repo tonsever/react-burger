@@ -4,7 +4,7 @@ import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Counter } from '@ya.praktikum/react-developer-burger-ui-components';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
-import {BurgerPropsType} from '../../utils/types';
+import {BurgerIngredientsPropsType} from '../../utils/types';
 import IngredientDetails from '../ingredientDetails/ingredientDetails';
 import Ingredient from '../ingredient/ingredient';
 import { DataContext } from '../../utils/dataContext.js';
@@ -96,6 +96,6 @@ function BurgerIngredients(props) {
     );
 }
 
-BurgerIngredients.propTypes = BurgerPropsType
+BurgerIngredients.propTypes = BurgerIngredientsPropsType
 
 export default BurgerIngredients;

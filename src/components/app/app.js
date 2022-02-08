@@ -85,7 +85,7 @@ if (isLoading === true) {return null} /* не отрисовывать пока 
             title='Детали ингредиента'
             closeModal={handleIngredientDetailsClick} >
             <IngredientDetails ingredientData={ingredient} /></Modal>}
-          {isOrderDetailsOpen && <Modal 
+          {isOrderDetailsOpen && orderNumber && <Modal 
           closeModal={handleOrderDetailsClick}>
             <OrderDetails orderNumber = {orderNumber}/></Modal>}
         </DataContext.Provider>

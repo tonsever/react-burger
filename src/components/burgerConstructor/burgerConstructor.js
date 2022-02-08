@@ -4,7 +4,8 @@ import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-comp
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import {BurgerPropsType} from '../../utils/types';
+/* import {BurgerPropsType} from '../../utils/types'; */
+import { BurgerConstructorPropsType } from '../../utils/types';
 import IngredientElement from '../ingredientElement/ingredientElement';
 import { DataContext } from '../../utils/dataContext.js';
 
@@ -43,7 +44,6 @@ function BurgerConstructor(props) {
         <div className={BurgerConstructorStyles.BurgerConstructor}>
             <section className={BurgerConstructorStyles.ingredients}>
                 <div className={BurgerConstructorStyles.container__item}>
-                    <div style={{ backgroundColor: '#4c4cff' }} className="ml-6"></div>
                     <ConstructorElement
                         type="top"
                         isLocked={true}
@@ -71,7 +71,6 @@ function BurgerConstructor(props) {
                     }
                 </div>
                 <div className={BurgerConstructorStyles.container__item}>
-                    <div style={{ backgroundColor: '#4c4cff' }} className="ml-6"></div>
                     <ConstructorElement
                         type="bottom"
                         isLocked={true}
@@ -95,6 +94,6 @@ function BurgerConstructor(props) {
     );
 }
 
-BurgerConstructor.propTypes = BurgerPropsType;
+BurgerConstructor.propTypes = BurgerConstructorPropsType;
 
 export default BurgerConstructor;
