@@ -1,5 +1,5 @@
 const config = {
-  url: `https://norma.nomoreparties.space/api/ingredients`,
+  url: `https://norma.nomoreparties.space`,
 };
 
 export default config;

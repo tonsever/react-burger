@@ -4,6 +4,8 @@
 }
 
 .nutritionists {
+  margin-top: 32px;
+  margin-bottom: 60px;
   width: 540px;
   display: flex;
   justify-content: space-between;

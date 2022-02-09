@@ -3,6 +3,7 @@ import ingredientsStyles from './ingredient.module.css';
 import { Counter } from '@ya.praktikum/react-developer-burger-ui-components';
 import Modal from '../modal/modal';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import {IngredientPropsType} from '../../utils/types';
 
 
 function Ingredient(props) {
@@ -24,5 +25,7 @@ function Ingredient(props) {
 
   );
 }
+
+Ingredient.propTypes = IngredientPropsType;
 
 export default Ingredient;
