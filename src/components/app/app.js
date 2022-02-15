@@ -8,6 +8,8 @@ import Modal from '../modal/modal';
 import OrderDetails from '../orderDetails/orderDetails';
 import config from '../../constants/config';
 import { DataContext } from '../../utils/dataContext.js';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { DndProvider } from 'react-dnd';
 
 
 function App() {
@@ -16,8 +18,6 @@ function App() {
   const [isIngredientDetailsOpen, setisIngredientDetailsOpen] = React.useState(false);
   const [ingredient, setIngredient] = React.useState();
   const [orderNumber, setrderNumber] = React.useState();
-  const [isLoading, setIsLoading] = React.useState(true);
-
 
   function handleOrderDetailsOpen() {
     setIsOrderDetailsOpen(!isOrderDetailsOpen);
@@ -36,7 +36,7 @@ function App() {
       })
         .then(res => {
           if (res.ok) {
-            res.json().then(res => { setrderNumber(res.order.number)})
+            res.json().then(res => { setrderNumber(res.order.number) })
           }
           else { console.log("Произошла ошибка"); }
         })
@@ -58,37 +58,37 @@ function App() {
     setIngredient(ingredientData);
   }
 
-  React.useEffect(() => {
-    fetch(`${config.url}/api/ingredients`)
-      .then(res => {
-        if (res.ok) {
-          res.json().then(res => { setData(res.data); setIsLoading(false)} )
-        }
-        else { console.log("Произошла ошибка"); }
-      })
-      .catch(e => {
-        console.log(e);
-      });
-  }, []);
+  /*  React.useEffect(() => {
+     fetch(`${config.url}/api/ingredients`)
+       .then(res => {
+         if (res.ok) {
+           res.json().then(res => { setData(res.data); setIsLoading(false)} )
+         }
+         else { console.log("Произошла ошибка"); }
+       })
+       .catch(e => {
+         console.log(e);
+       });
+   }, []);
+  */
 
-
-if (isLoading === true) {return null} /* не отрисовывать пока не получим data */
+  /* if (ingredientsRequest === false) { return null } не отрисовывать пока не получим data */
 
   return (
     <div className={appStyles.app}>
       <AppHeader />
       <main className={appStyles.main}>
-        <DataContext.Provider value={{ data }}>
+        <DndProvider backend={HTML5Backend}>
           <BurgerIngredients ingredientDetail={handleIngredientClick} />
           <BurgerConstructor orderDetil={handleOrderDetailsClick} />
-          {isIngredientDetailsOpen && <Modal
-            title='Детали ингредиента'
-            closeModal={handleIngredientDetailsClick} >
-            <IngredientDetails ingredientData={ingredient} /></Modal>}
-          {isOrderDetailsOpen && orderNumber && <Modal 
+        </DndProvider>
+        {isIngredientDetailsOpen && <Modal
+          title='Детали ингредиента'
+          closeModal={handleIngredientDetailsClick} >
+          <IngredientDetails ingredientData={ingredient} /></Modal>}
+        {isOrderDetailsOpen && orderNumber && <Modal
           closeModal={handleOrderDetailsClick}>
-            <OrderDetails orderNumber = {orderNumber}/></Modal>}
-        </DataContext.Provider>
+          <OrderDetails orderNumber={orderNumber} /></Modal>}
       </main>
     </div>
   );

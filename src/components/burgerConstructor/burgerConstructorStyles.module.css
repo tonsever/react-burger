@@ -10,6 +10,7 @@
   }
   
   .ingredients__container {
+    min-height: 80px;
     max-height: 646px;
     display: flex; 
     flex-direction: column; 
