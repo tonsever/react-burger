@@ -8,13 +8,19 @@ import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components
 import { BurgerConstructorPropsType } from '../../utils/types';
 import IngredientElement from '../ingredientElement/ingredientElement';
 import { DataContext } from '../../utils/dataContext.js';
+import { useDispatch, useSelector } from 'react-redux';
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 
 function BurgerConstructor(props) {
-    const { data } = React.useContext(DataContext);
+    /* const { data } = React.useContext(DataContext); */
     const [totalPrice, setTotalPrice] = React.useState(0);
-    const [constructorElements, setConstructorElements] = React.useState(data);
-    const bun = data.find((bun) => {
+    const dispatch = useDispatch();
+    const { ingredients, ingredientsRequest } = useSelector(state => state.ingredients);
+    const [constructorElements, setConstructorElements] = React.useState(ingredients);
+    console.log(constructorElements);
+    const bun = constructorElements.find((bun) => {
         return bun.type === "bun"
     })
 
@@ -40,6 +46,8 @@ function BurgerConstructor(props) {
         },
         [constructorElements, setTotalPrice]
     );
+
+    if (ingredientsRequest === false) { return null }
     return (
         <div className={BurgerConstructorStyles.BurgerConstructor}>
             <section className={BurgerConstructorStyles.ingredients}>
@@ -53,7 +61,7 @@ function BurgerConstructor(props) {
                     />
                 </div>
                 <div className={BurgerConstructorStyles.ingredients__container}>
-                    {constructorElements.map(
+                    {/* {constructorElements.map(
                         ({ name, price, image, type, _id }) => {
                             if (type !== "bun") {
                                 return (
@@ -68,7 +76,7 @@ function BurgerConstructor(props) {
                                 );
                             }
                         })
-                    }
+                    } */}
                 </div>
                 <div className={BurgerConstructorStyles.container__item}>
                     <ConstructorElement

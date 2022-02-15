@@ -4,20 +4,34 @@ import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Counter } from '@ya.praktikum/react-developer-burger-ui-components';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
-import {BurgerIngredientsPropsType} from '../../utils/types';
+import { BurgerIngredientsPropsType } from '../../utils/types';
 import IngredientDetails from '../ingredientDetails/ingredientDetails';
 import Ingredient from '../ingredient/ingredient';
 import { DataContext } from '../../utils/dataContext.js';
+import { useDispatch, useSelector } from 'react-redux';
+import { getIngredients } from '../../services/actions/ingredients';
 
 
 function BurgerIngredients(props) {
-    const { data } = React.useContext(DataContext); 
+    /* const { data } = React.useContext(DataContext);  */
     const [current, setCurrent] = React.useState('buns')
     function handlesetCurrent(e) {
-        if (e === 'buns') {setCurrent('buns')};
-        if (e === 'sauces') {setCurrent('sauces')};
-        if (e === 'mains') {setCurrent('mains')};
+        if (e === 'buns') { setCurrent('buns') };
+        if (e === 'sauces') { setCurrent('sauces') };
+        if (e === 'mains') { setCurrent('mains') };
     }
+
+    const dispatch = useDispatch();
+    const { ingredients, ingredientsRequest } = useSelector(state => state.ingredients);
+
+    React.useEffect(
+        () => {
+            dispatch(getIngredients());
+        },
+        []
+    );
+
+    if (ingredientsRequest === true) { return null }
 
     return (
         <div className={BurgerIngredientsStyles.BurgerIngredients}>
@@ -36,7 +50,7 @@ function BurgerIngredients(props) {
             <section className={BurgerIngredientsStyles.ingredients__container}>
                 <h2 className="text text_type_main-medium">Булки</h2>
                 <div className={BurgerIngredientsStyles.list}>
-                    {data.map(
+                    {ingredients.map(
                         ({ name, price, image, type, _id }) => {
                             if (type === "bun") {
                                 return (
@@ -55,7 +69,7 @@ function BurgerIngredients(props) {
                 </div>
                 <h2 className="text text_type_main-medium">Соусы</h2>
                 <div className={BurgerIngredientsStyles.list}>
-                    {data.map(
+                    {ingredients.map(
                         ({ name, price, image, type, _id }) => {
                             if (type === "sauce") {
                                 return (
@@ -74,7 +88,7 @@ function BurgerIngredients(props) {
                 </div>
                 <h2 className="text text_type_main-medium">Начинки</h2>
                 <div className={BurgerIngredientsStyles.list}>
-                    {data.map(
+                    {ingredients.map(
                         ({ name, price, image, type, _id }) => {
                             if (type === "main") {
                                 return (
